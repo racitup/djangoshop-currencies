@@ -7,8 +7,9 @@ Introduction
 ------------
 
 This module allows Django-SHOP implementations to integrate live
-currency feeds. The module is currently compatible
-with Django v1.10.7 and
+currency feeds. This will allow you to offer your shop product prices
+in the user's chosen currency.
+The module is currently compatible with Django v1.10.7 and
 `Django-SHOP <https://github.com/awesto/django-shop>`__ v0.10.2. This
 documentation assumes a working knowledge of Django and
 `Django-SHOP <http://django-shop.readthedocs.io/en/latest/>`__.
@@ -40,6 +41,16 @@ To enable this functionality your currencies configuration must satisfy the foll
 
 Usage
 ~~~~~
+
+Replace the ``DefaultCartModifier`` with the provided ``CurrencyCartModifier``
+in your shop settings:
+
+.. code-block:: python
+
+    SHOP_CART_MODIFIERS = (
+        # provides the default cart lines
+        'shop_currencies.modifiers.CurrencyCartModifier',
+        ...
 
 Use the Money conversion extension which provides the ``to(code)`` function like so:
 
