@@ -52,7 +52,8 @@ in your shop settings:
         'shop_currencies.modifiers.CurrencyCartModifier',
         ...
 
-Use the Money conversion extension which provides the ``to(code)`` function like so:
+Use the Money conversion extension which provides the ``to(code)`` function as below.
+The additional ``base`` argument is used by the cart modifier.
 
 .. code-block:: python
 
@@ -64,6 +65,9 @@ Use the Money conversion extension which provides the ``to(code)`` function like
         unit_price = MoneyField()
         ...
 
-        def get_price(self, request):
-            session_currency_code = get_currency_code(request)
-            return self.unit_price.to(session_currency_code)
+        def get_price(self, request, base=False):
+            if base:
+                return self.unit_price
+            else:
+                session_currency_code = get_currency_code(request)
+                return self.unit_price.to(session_currency_code)

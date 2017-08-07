@@ -8,6 +8,7 @@ from .money import AbstractMoney, Money
 
 class CurrencyCartModifier(BaseCartModifier):
     """Use this instead of DefaultCartModifier for all basic line item calculations"""
+    identifier = "currencycartmodifier"
     # Empty carts are shown in base currency
     _foreigncurrency = False
     def process_cart_item(self, cart_item, request):
