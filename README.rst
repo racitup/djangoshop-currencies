@@ -44,15 +44,16 @@ To enable this functionality your currencies configuration must satisfy the foll
 
     The currencies database table **must** be initialised before any Django app can import the included money types.
     If initialising a new database after shop project development, follow these steps:
-    - In the settings ``INSTALLED_APPS`` comment out entries starting with ``cmsplugin_cascade`` and ``shop`` plus your shop implementation
-    - Comment out ``ROOT_URLCONF``
-    - In ``MIDDLEWARE_CLASSES`` comment out ``shop`` entries
-    - Run ``python manage.py migrate``
-    - Satisfy requirements 1 & 2 above
-    - Run ``python manage.py createsuperuser`` to create an admin user
-    - Restore your settings
-    - Migrate again
-    - Satisfy requirement 3 above
+
+    1. In the settings ``INSTALLED_APPS`` comment out entries starting with ``cmsplugin_cascade`` and ``shop`` plus your shop implementation
+    2. Comment out ``ROOT_URLCONF``
+    3. In ``MIDDLEWARE_CLASSES`` comment out ``shop`` entries
+    4. Run ``python manage.py migrate``
+    5. Satisfy requirements 1 & 2 above
+    6. Run ``python manage.py createsuperuser`` to create an admin user
+    7. Restore your settings
+    8. Migrate again
+    9. Satisfy requirement 3 above
 
 Usage
 ~~~~~
