@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from decimal import Decimal, InvalidOperation
 from currencies.models import Currency
 from currencies.utils import convert
-from shop import app_settings
+from shop.conf import app_settings
 from shop.money import MoneyMaker as MoneyMakerBase, AbstractMoney as AbstractMoneyBase
 
 """

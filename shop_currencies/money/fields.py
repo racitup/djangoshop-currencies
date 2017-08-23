@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from shop import app_settings
+from shop.conf import app_settings
 from shop.money.fields import MoneyFieldWidget, MoneyFormField, MoneyField as MoneyFieldBase
 from .money_maker import MoneyMaker
 
