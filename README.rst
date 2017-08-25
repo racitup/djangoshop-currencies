@@ -9,13 +9,19 @@ Introduction
 This module allows Django-SHOP implementations to integrate live
 currency feeds. This will allow you to offer your shop product prices
 in the user's chosen currency.
-The module is currently compatible with Django v1.10.7 and
-`Django-SHOP <https://github.com/awesto/django-shop>`__ v0.10.2. This
+
+The module is currently compatible with Django v1.10.7. This
 documentation assumes a working knowledge of Django and
 `Django-SHOP <http://django-shop.readthedocs.io/en/latest/>`__.
 
+Release History
+~~~~~~~~~~~~~~~
+
+- 0.2.x - `Django-SHOP <https://github.com/awesto/django-shop>`__ v0.11.x compatibility
+- 0.1.x - `Django-SHOP <https://github.com/awesto/django-shop>`__ v0.10.2 compatibility
+
 TODO
-----
+~~~~
 
 Please let us know of you have any feature suggestions, or wish to
 implement any of the below:

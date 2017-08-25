@@ -25,7 +25,7 @@ class CurrencyCartModifier(BaseCartModifier):
             })
         else:
             self._foreigncurrency = False
-        return super().process_cart_item(cart_item, request)
+        return super(CurrencyCartModifier, self).process_cart_item(cart_item, request)
 
     def process_cart(self, cart, request):
         if not isinstance(cart.subtotal, AbstractMoney):
@@ -36,4 +36,4 @@ class CurrencyCartModifier(BaseCartModifier):
             cart.extra_rows[self.identifier] = ExtraCartRow({
                 'label': _("All payments are in {}".format(cart.total._currency_code))
             })
-        return super().process_cart(cart, request)
+        return super(CurrencyCartModifier, self).process_cart(cart, request)
