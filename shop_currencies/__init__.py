@@ -9,7 +9,7 @@ Release logic:
  3. git commit -m 'Bump to <version>'
  4. git tag <version>
  5. git push
- 6. assure that all tests pass on https://travis-ci.org/racitup/djangoshop-subscribe
+ 6. assure that all tests pass on https://travis-ci.org/racitup/djangoshop-currencies
  7. git push --tags
  8. python setup.py sdist upload
  9. bump the version, append ".dev0" to __version__
@@ -17,4 +17,4 @@ Release logic:
 11. git commit -m 'Start with <version>'
 12. git push
 """
-__version__ = '0.2.0.dev0'
+__version__ = '0.2.0'
