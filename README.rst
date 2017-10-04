@@ -23,7 +23,7 @@ Release History
 TODO
 ~~~~
 
-Please let us know of you have any feature suggestions, or wish to
+Please let me know of you have any feature suggestions, or wish to
 implement any of the below:
 
 -  Fix for the db initialisation warning below.
@@ -40,26 +40,33 @@ Install this module through pip: ``pip install djangoshop-currencies``.
 The Django-SHOP Money system has been extended to use django-currencies as a currency conversion backend.
 To enable this functionality your currencies configuration must satisfy the following requirements:
 
-1. ISO4217Exponent and symbol populating using ``manage.py currencies iso``
+1. ISO4217Exponent and symbol populating using ``./manage.py currencies iso``
    (This automatically imports the currencies set in the ``SHOP_CURRENCIES`` setting)
-2. Currency factors populating using ``manage.py updatecurrencies <source>``
+2. Currency factors populating using ``./manage.py updatecurrencies yahoo``
    (This also sets the base currency to ``SHOP_DEFAULT_CURRENCY``)
 3. Some currencies set to active in the admin interface
 
-.. warning::
+.. topic:: Warning
 
-    The currencies database table **must** be initialised before any Django app can import the included money types.
-    If initialising a new database after shop project development, follow these steps:
+    The *currencies* database table **must** be initialised before any Django app can import the included money types.
+    Unfortunately the ``./manage.py`` command will automatically import a lot of modules when they are configured in
+    INSTALLED_APPS causing an error which prevents you from running ``./manage.py migrate``, etc.
 
-    1. In the settings ``INSTALLED_APPS`` comment out entries starting with ``cmsplugin_cascade`` and ``shop`` plus your shop implementation
-    2. Comment out ``ROOT_URLCONF``
-    3. In ``MIDDLEWARE_CLASSES`` comment out ``shop`` entries
+    As a workaround before a permanent solution is found:
+
+    1. Create a minimal settings file which will be used temporarily to allow the currencies table of your database to be populated. As an example, `one is included here <shop_currencies/min_settings.py>`_.
+    2. Run ``python manage.py migrate --settings shop_currencies.min_settings`` (or use your minimal settings file)
+    3. Satisfy requirements 1. & 2. above & append ``--settings <min_settings>`` to the commands
     4. Run ``python manage.py migrate``
-    5. Satisfy requirements 1 & 2 above
-    6. Run ``python manage.py createsuperuser`` to create an admin user
-    7. Restore your settings
-    8. Migrate again
-    9. Satisfy requirement 3 above
+    5. Run ``python manage.py createsuperuser`` to create an admin user
+    6. Satisfy requirement 3. above
+
+    Once created, I recommend dumping your base currency as a fixture for subsequent use when initialising databases:
+
+    .. code-block:: shell
+
+        python manage.py dumpdata --indent 2 --output fixtures/currency.json --pks 1 currencies.currency
+        python manage.py loaddata --settings shop_currencies.min_settings fixtures/currency.json
 
 Usage
 ~~~~~
